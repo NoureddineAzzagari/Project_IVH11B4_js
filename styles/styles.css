@@ -1,0 +1,66 @@
+.overview-img{
+    width: 100%;
+}
+
+body{
+    background-color: #1F1F1F;
+}
+
+.col-md-2{
+  text-align: center;
+  padding: 0;
+  border: solid black 1px;
+}
+
+.full-height{
+  height: 100vh;
+}
+
+.login-row{
+  margin-top: 200px;
+}
+
+.overview-row{
+  margin-top: 50px;
+}
+
+.navbar{
+  margin-bottom: 50px;
+}
+
+.transparent-white{
+  background-color: #F2F2F2;
+  opacity: .4;
+}
+
+.cardWrap {
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+
+.description {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  background-color: #F2F2F2;
+  opacity: 1;
+  visibility: hidden;
+}
+
+.description > *{
+  margin-bottom: 25%;
+}
+
+.cardWrap:hover .description {
+  visibility: visible;
+  opacity: .8;
+}
+
+.title{
+  opacity: 1;
+  color: #000;
+  font-size: 1.5rem;
+  margin-top: 1rem;
+}
