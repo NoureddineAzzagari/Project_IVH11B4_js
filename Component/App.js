@@ -1,20 +1,33 @@
 import React from 'react';
 import { Link, browserHistory } from 'react-router';
 
+/**
+ * class die de layout/master page maakt voor films en tv shows
+ */
 export class App extends React.Component{
 
+  /**
+   * veranaderd de navbar classes zodat de knop movies active is
+   */
   changeViewToMovies(){
     $(".active").removeClass("active");
     $(".movies").addClass("active");
     browserHistory.push("/movies");
   }
 
+  /**
+   * veranaderd de navbar classes zodat de knop tv shows active is
+   */
   changeViewToTv(){
     $(".active").removeClass("active");
     $(".tv").addClass("active");
     browserHistory.push("/tv");
   }
 
+  /**
+   * rendered de pagina
+   * @returns {XML}
+   */
   render() {
     return (
       <div>
@@ -34,7 +47,7 @@ export class App extends React.Component{
                 <li className="tv"  onClick={(e) => this.changeViewToTv(e)}><a href="javascript: void(0)">Tv series</a></li>
               </ul>
               <ul className="nav navbar-nav navbar-right">
-                <li><a href="#"><span className="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                <li><a href="javascript:void(0)" onClick={() => {browserHistory.push("signup")}}><span className="glyphicon glyphicon-user"></span> Sign Up</a></li>
                 <li><a onClick={()=>{browserHistory.push("/login")}} href="javascript:void(0)"><span className="glyphicon glyphicon-log-in"></span> Login</a></li>
               </ul>
             </div>
