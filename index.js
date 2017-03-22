@@ -4,11 +4,11 @@ import {createStore, combineReducers} from 'redux';
 import {Router, Route, IndexRoute, browserHistory} from 'react-router';
 import {MovieOverView} from './Component/Movies/movie-overview';
 import {MovieDetail} from './Component/Movies/movie-detail';
-import {App} from './Component/App';
+import {App} from './Component/layout/App';
 import {TvOverview} from './Component/TvShows/tv-overview';
 import {LoginPage} from './Component/login';
 import {SignUp} from './Component/signUp';
-import {SignLayout} from './Component/signLayout';
+import {SignLayout} from './Component/layout/signLayout';
 
 
 /**

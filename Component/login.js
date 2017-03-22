@@ -9,7 +9,7 @@ export class LoginPage extends React.Component{
 
   constructor(props){
     super(props);
-    this.state = {username: '', password: ''}
+    this.state = {username: '', password: '', invalid: false}
   }
 
   /**
@@ -17,8 +17,13 @@ export class LoginPage extends React.Component{
    * @param e button click event van de submit button
    */
   logIn(e){
+    this.setState({invalid: false});
     e.preventDefault();
-    login(this.state.userName, this.state.password);
+    login(this.state.userName, this.state.password)
+      .then((result) => {
+        if(result)browserHistory.push("/movies");
+        else(this.setState({invalid: true}));
+      });
   }
 
   /**
@@ -42,10 +47,12 @@ export class LoginPage extends React.Component{
    * @returns {XML}
    */
   render(){
+    const invalid = <div><h4 className="error-login">U heeft een verkeerde inlog naam of wachtwoord ingevuld</h4></div>
     return <div className="row login-row">
       <div className="col-md-3"></div>
       <div className="col-md-6">
         <div className="well">
+          {this.state.invalid ? invalid : ""}
           <form method="post">
             <div className="row">
               <div className="col-md-4">

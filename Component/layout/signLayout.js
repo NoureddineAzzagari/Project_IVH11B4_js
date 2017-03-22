@@ -1,10 +1,28 @@
 import  React from 'react';
 import  {browserHistory} from 'react-router';
+import { getConfiguration } from './../../actions/configuration';
 
 /**
  * klasse die de layout page of master page maakt voor de sing up en login pagina
  */
 export class SignLayout extends React.Component{
+
+  constructor(props){
+    super(props);
+    this.state = {
+      name: ''
+    }
+  }
+
+  /**
+   * methode die automatisch aangeroepen wordt als deze component geladen is haalt de website naam op
+   */
+  componentDidMount(){
+    getConfiguration()
+      .then((json) => {
+        this.setState({name: json.name});
+      })
+  }
 
   /**
    * rendered de pagina

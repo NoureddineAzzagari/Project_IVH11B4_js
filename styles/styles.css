@@ -16,6 +16,10 @@ body{
   margin-top: 1rem;
 }
 
+.error-login{
+  color: red;
+}
+
 .c-button{
   background-color: #3b6ef2;
   border-radius: 10px 10px 10px 10px;

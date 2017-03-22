@@ -1,10 +1,28 @@
 import React from 'react';
 import { Link, browserHistory } from 'react-router';
+import { getConfiguration } from './../../actions/configuration';
 
 /**
  * class die de layout/master page maakt voor films en tv shows
  */
 export class App extends React.Component{
+
+  constructor(props){
+    super(props);
+    this.state = {
+      name: ''
+    }
+  }
+
+  /**
+   * methode die automatisch aangeroepen wordt als deze component geladen is haalt de website naam op
+   */
+  componentDidMount(){
+    getConfiguration()
+      .then((json) => {
+        this.setState({name: json.name});
+      })
+  }
 
   /**
    * veranaderd de navbar classes zodat de knop movies active is
@@ -39,7 +57,7 @@ export class App extends React.Component{
                 <span className="icon-bar"></span>
                 <span className="icon-bar"></span>
               </button>
-              <a className="navbar-brand" href="#">WebSiteName</a>
+              <a className="navbar-brand" href="#">{this.state.name}</a>
             </div>
             <div className="collapse navbar-collapse" id="myNavbar">
               <ul className="nav navbar-nav">
