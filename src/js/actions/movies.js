@@ -15,6 +15,22 @@ export const getMovies = () => {
 };
 
 /**
+ *
+ * @param search
+ * @param option
+ * @returns {*|Promise.<TResult>}
+ */
+export const searchMovies = (search, option) =>{
+  const req = new Request(`${apiUrl}/movies/search`,{
+    method: "POST",
+    credentials: "include"
+  });
+  return fetch(req).then((response) => {
+    return response.json();
+  })
+};
+
+/**
  * stuurd een request om een film op te halen aan de hand van een id
  * @param id id van de op te halen film
  * @returns {Promise.<TResult>} json resultaat van de op te halen film

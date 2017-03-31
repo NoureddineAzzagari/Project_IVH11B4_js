@@ -26,7 +26,7 @@ module.exports = {
       {
         test: /\.json$/,            // Load JSON-files into code base.
         exclude: /node_modules/,
-        loader: 'json'
+        loader: 'json-loader'
       }
     ]
   },

@@ -7,6 +7,7 @@ import {messages} from './../../messages/app-messages';
 import {HotSwappingIntlProvider} from './../hotSwappingIntlProvider';
 import {login} from './../../actions/log-in';
 import {getUserInfo} from './../../actions/user-info';
+import {searchMovies} from './../../actions/movies';
 
 /**
  * class die de layout/master page maakt voor films en tv shows
@@ -17,9 +18,9 @@ class App extends React.Component{
     super(props);
     this.state = {
       name: '',
-      userInfo: {}
+      userInfo: {},
+      option: 1
     }
-
   }
 
   /**
@@ -38,6 +39,10 @@ class App extends React.Component{
       .then((json) => {
         this.setState({userInfo: json});
       })
+  }
+
+  search(){
+    searchMovies(this.state.search, this.state.option)
   }
 
   /**
@@ -89,6 +94,25 @@ class App extends React.Component{
                 <li className="tv"  onClick={(e) => this.changeViewToTv(e)}><a href="javascript: void(0)"><span className="glyphicon glyphicon-unchecked"></span> <FormattedMessage id="App.Tv" defaultMessage={"Tv shows"} /></a></li>
               </ul>
               <ul className="nav navbar-nav navbar-right">
+                <li className="dropdown">
+                  <a href="javascript:void(0)" className="dropdown-toggle" data-toggle="dropdown">zoeken<span className="caret"></span></a>
+                  <ul className="dropdown-menu">
+                    <li>
+                      <input onChange={(e) => this.setState({search: e.target.value})} type="text" className="form-control" />
+                    </li>
+                    <li>
+                      <input onClick={(e) => this.setState({option: e.target.value})} selected="selected" type="radio" className="" value="1" name="searchoption" />
+                      <input onClick={(e) => this.setState({option: e.target.value})} type="radio" className="" value="2" name="searchoption" />
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <input onChange={(e) => this.setState({search: e.target.value})} type="text" className="form-control" />
+                </li>
+                <li>
+                  <input onClick={(e) => this.setState({option: e.target.value})} selected="selected" type="radio" className="" value="1" name="searchoption" />
+                  <input onClick={(e) => this.setState({option: e.target.value})} type="radio" className="" value="2" name="searchoption" />
+                </li>
                 <li className="dropdown">
                   <a href="javascript:void(0)" className="dropdown-toggle" data-toggle="dropdown">{this.props.intl.formatMessage(messages.language)}<span className="caret"></span></a>
                   <ul className="dropdown-menu">

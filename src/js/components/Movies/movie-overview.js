@@ -11,7 +11,7 @@ import {messages} from './../../messages/movie-overview-messages';
 class MovieOverView extends React.Component{
   constructor(props){
       super(props);
-      this.state = {movies: [], isLoading: true};
+      this.state = {movies: [], isLoading: true, isFilter: false, filterMovies: []};
   }
 
   /**
@@ -20,6 +20,14 @@ class MovieOverView extends React.Component{
    */
   observe(subject){
     subject.attach(this);
+  }
+
+  static filter(movies){
+    this.setState({filterMovies: movies, isFilter: true});
+  }
+
+  static cancelFilter(){
+    this.setState({isFiler: false});
   }
 
   /**
@@ -80,7 +88,8 @@ class MovieOverView extends React.Component{
       <h2>{this.props.intl.formatMessage(messages.Error)}</h2>
     </div>
       return <div className="row overview-row">
-          {this.state.isLoading ? <div className="loader"></div> :this.state.movies.length > 0 ? this.state.movies.map((movie, index) =>{
+        {!this.state.isFilter ?
+          this.state.isLoading ? <div className="loader"></div> :this.state.movies.length > 0 ? this.state.movies.map((movie, index) =>{
             return <div key={index}><div className="col-md-2 col-sm-4 col-xs-6 col-lg-1">
               <div className="cardWrap" onClick={() => {browserHistory.push(`movie/detail/${movie.id}`)}}>
                 <img src={movie.imgUrl} className="overview-img" />
@@ -97,8 +106,30 @@ class MovieOverView extends React.Component{
                 </div>
               </div>
             </div>{((index + 1) % MovieOverView.getAmountOfMoviesPerRow() == 0) ? <div className="row"></div> : "" }</div>
-          }) : noMovies}
+          }) : noMovies
+          :
+        this.state.filterMovies.map((movie, index)=>{
+          return <div key={index}><div className="col-md-2 col-sm-4 col-xs-6 col-lg-1">
+            <div className="cardWrap" onClick={() => {browserHistory.push(`movie/detail/${movie.id}`)}}>
+              <img src={movie.imgUrl} className="overview-img" />
+              <div className="description">
+                <p className="title">
+                  <b>{movie.title}</b>
+                </p>
+                <p className="release-year">
+                  {movie.releaseDate}
+                </p>
+                <p>
+                  <span className="glyphicon glyphicon-heart-empty"></span>
+                </p>
+              </div>
+            </div>
+          </div>{((index + 1) % MovieOverView.getAmountOfMoviesPerRow() == 0) ? <div className="row"></div> : "" }</div>
+        })} : noMovies
+        })}
         </div>
+
+
   }
 }
 export default injectIntl(MovieOverView)
