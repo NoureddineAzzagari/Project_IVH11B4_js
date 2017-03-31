@@ -6,10 +6,8 @@ const apiUrl = "http://localhost:8080/api";
  */
 export const getShows = () => {
   const req = new Request(`${apiUrl}/tv`,{
-    headers:{
-      method: "GET",
-      credentials: "same-origin"
-    }
+    method: "GET",
+    credentials: "include"
   });
   return fetch(req).then((response) => {return response.json();});
 };
@@ -21,10 +19,8 @@ export const getShows = () => {
  */
 export const getShowById = (id) =>{
   const req = new Request(`${apiUrl}/tv/${id}`,{
-    headers:{
-      method: "GET",
-      credentials: "same-origin"
-    }
+    method: "GET",
+    credentials: "include"
   });
   return fetch(req).then((response) =>{return response.json();});
 };

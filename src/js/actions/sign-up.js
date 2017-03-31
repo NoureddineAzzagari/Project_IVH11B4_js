@@ -8,9 +8,7 @@ const apiUrl = "http://localhost:8080";
 export const signUp = (userInfo) => {
   const req = new Request(`${apiUrl}/signup`, {
     method: "POST",
-    headers: {
-      credentials: "same-origin"
-    },
+    credentials: "include",
     body: userInfo
   });
   return fetch(req);

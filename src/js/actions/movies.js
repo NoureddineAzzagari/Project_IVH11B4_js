@@ -6,10 +6,8 @@ const apiUrl = "http://localhost:8080/api";
  */
 export const getMovies = () => {
   const req = new Request(apiUrl + "/movies", {
-    headers: {
-      method: "GET",
-      credentials: "same-origin"
-    }
+    method: "GET",
+    credentials: "include"
   });
   return fetch(req).then((response) => {
     return response.json();
@@ -23,10 +21,8 @@ export const getMovies = () => {
  */
 export const getMovieById = (id) => {
   const req = new Request(`${apiUrl}/movies/${id}`, {
-    headers: {
-      method: "GET",
-      credentials: "same-origin"
-    }
+    method: "GET",
+    credentials: "include"
   });
   return fetch(req).then((response) => {
     return response.json();
@@ -43,11 +39,9 @@ export const addMovie = (movie) => {
   movieForm.append("year", movie.releaseDate);
 
   const req = new Request(`${apiUrl}/movies/add`, {
-    headers: {
-      method: "POST",
-      credentials: "same-origin",
-      body: movieForm
-    }
+    method: "POST",
+    credentials: "include",
+    body: movieForm
   })
 };
 

@@ -6,6 +6,7 @@ import $ from 'jquery';
 import {messages} from './../../messages/app-messages';
 import {HotSwappingIntlProvider} from './../hotSwappingIntlProvider';
 import {login} from './../../actions/log-in';
+import {getUserInfo} from './../../actions/user-info';
 
 /**
  * class die de layout/master page maakt voor films en tv shows
@@ -15,8 +16,10 @@ class App extends React.Component{
   constructor(props){
     super(props);
     this.state = {
-      name: ''
+      name: '',
+      userInfo: {}
     }
+
   }
 
   /**
@@ -30,6 +33,10 @@ class App extends React.Component{
     login("-","-")
       .then((response) => {
         if(!response) browserHistory.push("/login")
+      })
+    getUserInfo()
+      .then((json) => {
+        this.setState({userInfo: json});
       })
   }
 
@@ -89,7 +96,7 @@ class App extends React.Component{
                     <li><a href="javascript:void(0)" name="en"onClick={(e) => this.updateLang(e)}>{this.props.intl.formatMessage(messages.english)}</a></li>
                   </ul>
                 </li>
-                <li><a href="javascript:void(0)" onClick={() => browserHistory.push("/user")}>{this.state.userName}</a></li>
+                <li><a href="javascript:void(0)" onClick={() => browserHistory.push("/user")}>{this.state.userInfo.userName}</a></li>
               </ul>
             </div>
           </div>
