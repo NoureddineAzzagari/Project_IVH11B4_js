@@ -1,0 +1,37 @@
+{
+  "nl-NL":{
+    "App.Movie": "Films",
+    "App.Tv": "Tv series",
+    "App.Signup": "Registreren",
+    "App.Login": "Inloggen",
+    "App.Language": "Taal",
+    "App.Dutch": "Nederlands",
+    "App.English": "Engels",
+
+    "Movie.Overview.Error": "Op dit moment zijn er geen films beschikbaar",
+
+    "Login.Layout.Signup": "Registreren",
+    "Login.Layout.Login": "Inloggen",
+    "Login.Layout.Language": "Taal",
+    "Login.Layout.Dutch": "Nederlands",
+    "Login.Layout.English": "Engels",
+    "Login.Server.Error": "Er ging iets verkeerd",
+
+    "Login.UserName": "Gerbuikersnaam:",
+    "Login.Password": "Wachtwoord:",
+    "Login.Button": "Inloggen",
+    "Login.Register": "Nieuw account aanmaken",
+    "Login.Error": "U heeft de inlognaam of wachtwoord verkeerd ingevuld",
+
+    "Register.FirstName": "Voornaam:",
+    "Register.LastName": "Achternaam:",
+    "Register.Address": "Adres:",
+    "Register.Email": "Email:",
+    "Register.UserName": "Gebruikersnaam:",
+    "Register.Password": "Wachtwoord:",
+    "Register.Age": "Leeftijd:",
+    "Register.Phone": "Telefoon:",
+    "Register.Button": "Registreer"
+
+  }
+}

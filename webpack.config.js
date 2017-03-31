@@ -2,7 +2,7 @@ var path = require('path');
 
 module.exports = {
   entry: './index.js',
-  output: { path: __dirname, filename: '/bundle/bundle.js' }, //output path voor de bundle js
+  output: { path: __dirname, filename: '/build/bundle.js' }, //output path voor de bundle js
 
   //devserver settings
   devServer: {
@@ -20,8 +20,13 @@ module.exports = {
         loader: 'babel-loader',
         exclude: /node_modules/,
         query: {
-          presets: ['es2015', 'react']
+          presets: ['es2015', 'react', 'stage-1']
         }
+      },
+      {
+        test: /\.json$/,            // Load JSON-files into code base.
+        exclude: /node_modules/,
+        loader: 'json'
       }
     ]
   },

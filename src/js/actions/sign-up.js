@@ -1,4 +1,4 @@
-const apiUrl = "http://localhost:8080/api";
+const apiUrl = "http://localhost:8080";
 
 /**
  * stuurd een request naar de server met nieuwe gebruikers informatie om zo een nieuwe gebruiker toe te voegen

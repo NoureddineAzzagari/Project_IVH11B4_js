@@ -1,4 +1,4 @@
-const apiUrl = "http://localhost:8080/api";
+const apiUrl = "http://localhost:8080";
 
 /**
  * stuurd een request naar de server om in te loggen
@@ -12,12 +12,11 @@ export const login = (userName, password) =>{
   form.append("password", password);
   const req = new Request(`${apiUrl}/login`,{
     method: "POST",
-    headers:{
-      credentials: "same-origin"
-    },
+    credentials: "include",
     body: form
   });
   return fetch(req).then((response) =>{
-    return response.json();
+    if(response.ok) return response.json();
+    else return 500;
   })
 };
