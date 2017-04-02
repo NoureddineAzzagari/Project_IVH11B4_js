@@ -96,22 +96,18 @@ class App extends React.Component{
               <ul className="nav navbar-nav navbar-right">
                 <li className="dropdown">
                   <a href="javascript:void(0)" className="dropdown-toggle" data-toggle="dropdown">zoeken<span className="caret"></span></a>
-                  <ul className="dropdown-menu">
+                  <ul className="dropdown-menu" style={{padding: "1rem"}}>
                     <li>
                       <input onChange={(e) => this.setState({search: e.target.value})} type="text" className="form-control" />
                     </li>
                     <li>
-                      <input onClick={(e) => this.setState({option: e.target.value})} selected="selected" type="radio" className="" value="1" name="searchoption" />
-                      <input onClick={(e) => this.setState({option: e.target.value})} type="radio" className="" value="2" name="searchoption" />
+                      <input id="title" onClick={(e) => this.setState({option: e.target.value})} defaultChecked="defaultChecked" type="radio" className="" value="1" name="searchoption" />
+                      <label htmlFor="title">&nbsp;&nbsp;Titel</label>
+                      <br />
+                      <input id="actor" onClick={(e) => this.setState({option: e.target.value})} type="radio" className="" value="2" name="searchoption" />
+                      <label htmlFor="actor">&nbsp;&nbsp;Actor</label>
                     </li>
                   </ul>
-                </li>
-                <li>
-                  <input onChange={(e) => this.setState({search: e.target.value})} type="text" className="form-control" />
-                </li>
-                <li>
-                  <input onClick={(e) => this.setState({option: e.target.value})} selected="selected" type="radio" className="" value="1" name="searchoption" />
-                  <input onClick={(e) => this.setState({option: e.target.value})} type="radio" className="" value="2" name="searchoption" />
                 </li>
                 <li className="dropdown">
                   <a href="javascript:void(0)" className="dropdown-toggle" data-toggle="dropdown">{this.props.intl.formatMessage(messages.language)}<span className="caret"></span></a>

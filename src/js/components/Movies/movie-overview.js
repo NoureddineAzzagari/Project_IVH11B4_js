@@ -125,7 +125,6 @@ class MovieOverView extends React.Component{
               </div>
             </div>
           </div>{((index + 1) % MovieOverView.getAmountOfMoviesPerRow() == 0) ? <div className="row"></div> : "" }</div>
-        })} : noMovies
         })}
         </div>
 
