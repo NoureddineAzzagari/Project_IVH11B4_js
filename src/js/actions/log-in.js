@@ -20,3 +20,15 @@ export const login = (userName, password) =>{
     else return 500;
   })
 };
+
+/**
+ * methode om uit te loggen
+ * @returns {*}
+ */
+export const logout = () =>{
+  const req = new Request(`${apiUrl}/logout`,{
+    method: "GET",
+    credentials: "include"
+  });
+  return fetch(req)
+};

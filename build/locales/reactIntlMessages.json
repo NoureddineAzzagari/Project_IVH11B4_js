@@ -7,6 +7,11 @@
     "App.Language": "Taal",
     "App.Dutch": "Nederlands",
     "App.English": "Engels",
+    "App.Search": "Zoeken",
+    "App.SearchTitle": "Titel",
+    "App.SearchReleaseYear": "Jaar",
+    "App.Logout": "Uitloggen",
+    "App.UserSettings": "Persoonlijke instellingen",
 
     "Movie.Overview.Error": "Op dit moment zijn er geen films beschikbaar",
 
@@ -31,7 +36,10 @@
     "Register.Password": "Wachtwoord:",
     "Register.Age": "Leeftijd:",
     "Register.Phone": "Telefoon:",
-    "Register.Button": "Registreer"
+    "Register.Button": "Registreer",
 
+    "Settings.RecentMovies": "Recent bekeken",
+    "Settings.NoMovies": "U heeft recent geen films bekeken",
+    "Settings.FirstName": "Voornaam"
   }
 }

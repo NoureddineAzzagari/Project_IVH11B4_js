@@ -5,9 +5,9 @@ import { FormattedMessage, defineMessages, injectIntl } from 'react-intl';
 import $ from 'jquery';
 import {messages} from './../../messages/app-messages';
 import {HotSwappingIntlProvider} from './../hotSwappingIntlProvider';
-import {login} from './../../actions/log-in';
+import {login, logout} from './../../actions/log-in';
 import {getUserInfo} from './../../actions/user-info';
-import {searchMovies} from './../../actions/movies';
+import {searchMovies, FilterSubject} from './../../actions/movies';
 
 /**
  * class die de layout/master page maakt voor films en tv shows
@@ -19,7 +19,9 @@ class App extends React.Component{
     this.state = {
       name: '',
       userInfo: {},
-      option: 1
+      option: 1,
+      search: '',
+      moviesActive: false
     }
   }
 
@@ -30,19 +32,24 @@ class App extends React.Component{
     getConfiguration()
       .then((json) => {
         this.setState({name: json.name});
-      })
+      });
     login("-","-")
       .then((response) => {
         if(!response) browserHistory.push("/login")
-      })
+      });
     getUserInfo()
       .then((json) => {
         this.setState({userInfo: json});
-      })
-  }
-
-  search(){
-    searchMovies(this.state.search, this.state.option)
+      });
+    $("#searchField").keyup((e) => {
+      if(e.which == 13){
+        searchMovies(this.state.search, this.state.option)
+          .then((movies) => {
+            FilterSubject.updateMovies(movies);
+          });
+        this.setState({search: '', option: 1});
+      }
+    });
   }
 
   /**
@@ -72,6 +79,20 @@ class App extends React.Component{
   }
 
   /**
+   * stopt de filter waardoor alle resultaten weer zullen worden weergegeven
+   */
+  cancelFilter(){
+    FilterSubject.cancelFilter();
+  }
+
+  /**
+   * logt de ingelogde gebruiker uit
+   */
+  logoutClick(){
+    logout().then(()=>browserHistory.push("/login"));
+  }
+
+  /**
    * rendered de pagina
    * @returns {XML}
    */
@@ -95,17 +116,20 @@ class App extends React.Component{
               </ul>
               <ul className="nav navbar-nav navbar-right">
                 <li className="dropdown">
-                  <a href="javascript:void(0)" className="dropdown-toggle" data-toggle="dropdown">zoeken<span className="caret"></span></a>
+                  <a href="javascript:void(0)" className="dropdown-toggle" data-toggle="dropdown">{this.props.intl.formatMessage(messages.search)}<span className="caret"></span></a>
                   <ul className="dropdown-menu" style={{padding: "1rem"}}>
+
+                      <a href="javascript:void(0)" onClick={() => this.cancelFilter()}><span className="glyphicon glyphicon-remove"></span></a>
+
                     <li>
-                      <input onChange={(e) => this.setState({search: e.target.value})} type="text" className="form-control" />
+                      <input id="searchField" value={this.state.search} onChange={(e) => this.setState({search: e.target.value})} type="text" className="form-control" />
                     </li>
                     <li>
                       <input id="title" onClick={(e) => this.setState({option: e.target.value})} defaultChecked="defaultChecked" type="radio" className="" value="1" name="searchoption" />
-                      <label htmlFor="title">&nbsp;&nbsp;Titel</label>
+                      <label htmlFor="title">&nbsp;&nbsp;{this.props.intl.formatMessage(messages.searchTitle)}</label>
                       <br />
                       <input id="actor" onClick={(e) => this.setState({option: e.target.value})} type="radio" className="" value="2" name="searchoption" />
-                      <label htmlFor="actor">&nbsp;&nbsp;Actor</label>
+                      <label htmlFor="actor">&nbsp;&nbsp;{this.props.intl.formatMessage(messages.searchReleaseYear)}</label>
                     </li>
                   </ul>
                 </li>
@@ -116,7 +140,16 @@ class App extends React.Component{
                     <li><a href="javascript:void(0)" name="en"onClick={(e) => this.updateLang(e)}>{this.props.intl.formatMessage(messages.english)}</a></li>
                   </ul>
                 </li>
-                <li><a href="javascript:void(0)" onClick={() => browserHistory.push("/user")}>{this.state.userInfo.userName}</a></li>
+                <li className="dropdown">
+                  <a href="javascript:void(0)" className="dropdown-togle" data-toggle="dropdown">{this.state.userInfo.userName}<span className="caret"></span></a>
+                  <ul className="dropdown-menu">
+                    <li>
+                      <a href="javascript:void(0)" onClick={() => this.logoutClick()}><span className="glyphicon glyphicon-log-out"></span> {this.props.intl.formatMessage(messages.logout)}</a>
+                      <a href="javascript:void(0)" onClick={() => browserHistory.push("/user")}><span className="glyphicon glyphicon-cog"></span> {this.props.intl.formatMessage(messages.userSettings)}</a>
+                    </li>
+                  </ul>
+
+                </li>
               </ul>
             </div>
           </div>

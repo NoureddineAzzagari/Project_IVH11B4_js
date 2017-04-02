@@ -15,20 +15,39 @@ export const getMovies = () => {
 };
 
 /**
+ * haalt alle recent bezochte films op
+ * @returns {*|Promise.<TResult>} promise die resolved in json resultaat van alle recent bezochte films
+ */
+export const getRecentMovies = () =>{
+  const req = new Request(apiUrl + "/movies/recent", {
+    method: "GET",
+    credentials: "include"
+  });
+  return fetch(req).then((response) => {
+    return response.json();
+  });
+};
+
+/**
  *
  * @param search
  * @param option
  * @returns {*|Promise.<TResult>}
  */
 export const searchMovies = (search, option) =>{
+  const form = new FormData();
+  form.append("searchString", search);
+  form.append("searchOption", option);
   const req = new Request(`${apiUrl}/movies/search`,{
     method: "POST",
-    credentials: "include"
+    credentials: "include",
+    body: form
   });
   return fetch(req).then((response) => {
     return response.json();
   })
 };
+
 
 /**
  * stuurd een request om een film op te halen aan de hand van een id
@@ -60,6 +79,72 @@ export const addMovie = (movie) => {
     body: movieForm
   })
 };
+
+/**
+ * subject class voor het observer pattern voor de filter/zoek optie
+ */
+export class FilterSubject{
+  constructor(){
+    this.observers = [];
+    this.state = [];
+    this.isFilter = true;
+    FilterSubject.updateMovies = FilterSubject.updateMovies.bind(this);
+    FilterSubject.cancelFilter = FilterSubject.cancelFilter.bind(this);
+  }
+
+  /**
+   * voegt een nieuwe observer toe aan de lijst van observers
+   * @param observer nieuwe observer
+   */
+  attach(observer){
+    this.observers.push(observer);
+  }
+
+  /**
+   * haalt de current state op
+   * @returns {*|Array}
+   */
+  getState(){
+    return this.state;
+  }
+
+  /**
+   * set een nieuwe state
+   * @param result
+   */
+  setState(result){
+    this.state = result;
+    this.notify();
+  }
+
+  /**
+   * update de de movies in state
+   * @param movies
+   */
+  static updateMovies(movies){
+    this.isFilter = true;
+    this.state = movies;
+    this.notify();
+  }
+
+  /**
+   * stopt de filter om weer alle resultaten te tonen
+   */
+  static cancelFilter(){
+    this.isFilter = false;
+    this.notify()
+  }
+
+  /**
+   * notified alle subscribers
+   */
+  notify(){
+    for(let observer of this.observers){
+      observer.updateSearch(this.state, this.isFilter);
+    }
+  }
+
+}
 
 /**
  * subject klasse voor het observer pattern

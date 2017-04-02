@@ -14,6 +14,7 @@ import {HotSwappingIntlProvider} from './src/js/components/hotSwappingIntlProvid
 import en from "react-intl/locale-data/en";
 import nl from 'react-intl/locale-data/nl';
 import localeData from './build/locales/reactIntlMessages.json';
+import UserSettings from './src/js/components/settings/userSettings';
 
 addLocaleData([...en, ...nl]);
 
@@ -40,6 +41,7 @@ ReactDom.render(
           <Route path="movies" component={MovieOverView} />
           <Route path="tv" component={TvOverview} />
           <Route path="movie/detail/:id" component={MovieDetail} />
+          <Route path="user" component={UserSettings} />
         </Route>
         <Route path="/signup" component={SignLayout}>
           <IndexRoute component={SignUpContainer} />

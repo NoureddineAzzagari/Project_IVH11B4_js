@@ -20,5 +20,25 @@ export const messages = defineMessages({
   english:{
     id: "App.English",
     defaultMessage: "English"
+  },
+  search:{
+    id: "App.Search",
+    defaultMessage: "Search"
+  },
+  searchTitle:{
+    id: "App.SearchTitle",
+    defaultMessage: "Title"
+  },
+  searchReleaseYear:{
+    id: "App.SearchReleaseYear",
+    defaultMessage: "Release year"
+  },
+  logout:{
+    id:"App.Logout",
+    defaultMessage: "Logout"
+  },
+  userSettings:{
+    id: "App.UserSettings",
+    defaultMessage: "User settings"
   }
 });
