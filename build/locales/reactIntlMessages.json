@@ -40,6 +40,12 @@
 
     "Settings.RecentMovies": "Recent bekeken",
     "Settings.NoMovies": "U heeft recent geen films bekeken",
-    "Settings.FirstName": "Voornaam"
+    "Settings.FirstName": "Voornaam",
+    "Settings.LastName": "Achternaam",
+    "Settings.UserName": "Gebruikersnaam",
+    "Settings.Email": "email",
+    "Settings.Address": "Adres",
+    "Settings.Phone": "Telefoon nummer",
+    "Settings.Edit": "Wijzigen"
   }
 }

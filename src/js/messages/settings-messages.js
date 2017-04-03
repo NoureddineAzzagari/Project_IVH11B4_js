@@ -12,5 +12,29 @@ export const messages = defineMessages({
   firstName:{
     id: "Settings.FirstName",
     defaultMessage: "Firstname"
+  },
+  lastName:{
+    id: "Settings.LastName",
+    defaultMessage: "Lastname"
+  },
+  userName:{
+    id: "Settings.UserName",
+    defaultMessage: "Username"
+  },
+  email:{
+    id: "Settings.Email",
+    defaultMessage:"Email"
+  },
+  address:{
+    id:"Settings.Address",
+    defaultMessage: "Address"
+  },
+  phone:{
+    id:"Settings.Phone",
+    defaultMessage:"Phone number"
+  },
+  edit:{
+    id:"Settings.Edit",
+    defaultMessage: "Edit"
   }
 });

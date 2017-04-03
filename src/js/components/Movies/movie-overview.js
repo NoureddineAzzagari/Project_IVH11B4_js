@@ -176,7 +176,7 @@ class MovieOverView extends React.Component{
             </div>
           </div>
         </div>{((this.index) % MovieOverView.getAmountOfMoviesPerRow() == 0) ? <div className="row"></div> : "" }</div>
-      }) : this.state.movies.movies.length > 0 && this.state.movies.favouriteMovies.length > 0 ? "" : noMovies;
+      }) : this.state.movies.movies.length > 0 || this.state.movies.favouriteMovies.length > 0 ? "" : noMovies;
 
       return <div className="row overview-row">
         {!this.state.isFilter ?
