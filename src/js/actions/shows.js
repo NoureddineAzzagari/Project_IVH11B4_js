@@ -31,7 +31,7 @@ export const getRecentTvShows = () =>{
  * @param id id van de op te halen tv show
  * @returns {Promise.<TResult>} json resultaat van de opgehaalde tv show als promise
  */
-export const getShowById = (id) =>{
+export const getTvShowById = (id) =>{
   const req = new Request(`${apiUrl}/tv/${id}`,{
     method: "GET",
     credentials: "include"
