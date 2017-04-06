@@ -1,7 +1,7 @@
 const apiUrl = "http://localhost:8080/api";
 
 /**
- * stuurd een request om alle tv shows op te halen
+ * stuurt een request om alle tv shows op te halen
  * @returns {Promise.<TResult>} json resultaat van de tv shows als promise
  */
 export const getShows = () => {
@@ -10,6 +10,20 @@ export const getShows = () => {
     credentials: "include"
   });
   return fetch(req).then((response) => {return response.json();});
+};
+
+/**
+ * haalt alle recent bezochte films op
+ * @returns {*|Promise.<TResult>} promise die resolved in json resultaat van alle recent bezochte films
+ */
+export const getRecentTvShows = () =>{
+  const req = new Request(apiUrl + "/tvShows/recent", {
+    method: "GET",
+    credentials: "include"
+  });
+  return fetch(req).then((response) => {
+    return response.json();
+  });
 };
 
 /**
@@ -23,4 +37,24 @@ export const getShowById = (id) =>{
     credentials: "include"
   });
   return fetch(req).then((response) =>{return response.json();});
+};
+
+/**
+ *
+ * @param search
+ * @param option
+ * @returns {*|Promise.<TResult>}
+ */
+export const searchTvShows = (search, option) =>{
+  const form = new FormData();
+  form.append("searchString", search);
+  form.append("searchOption", option);
+  const req = new Request(`${apiUrl}/movies/search`,{
+    method: "POST",
+    credentials: "include",
+    body: form
+  });
+  return fetch(req).then((response) => {
+    return response.json();
+  })
 };

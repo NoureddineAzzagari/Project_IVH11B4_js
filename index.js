@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDom from 'react-dom';
-import {createStore, combineReducers} from 'redux';
 import {Router, Route, IndexRoute, browserHistory} from 'react-router';
 import MovieOverView from './src/js/components/Movies/movie-overview';
 import {MovieDetail} from './src/js/components/Movies/movie-detail';
