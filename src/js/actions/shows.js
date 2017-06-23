@@ -5,7 +5,7 @@ const apiUrl = "http://localhost:8080/api";
  * @returns {Promise.<TResult>} json resultaat van de tv shows als promise
  */
 export const getShows = () => {
-  const req = new Request(`${apiUrl}/tv`,{
+  const req = new Request(`${apiUrl}/tv/all`,{
     method: "GET",
     credentials: "include"
   });

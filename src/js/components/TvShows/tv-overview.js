@@ -58,7 +58,9 @@ export class TvOverview extends React.Component {
    * @param shows lijst met alle shows
    */
   updateShows(shows) {
-    this.setState({shows: shows});
+    let result = Object.assign({}, this.state.shows);
+    result.shows = shows || [];
+    this.setState({shows: result});
   }
 
   /**
@@ -126,7 +128,7 @@ export class TvOverview extends React.Component {
    */
   render() {
     return <div className="row overview-row">
-      {this.state.shows.map((show, index) => {
+      {this.state.shows.shows.map((show, index) => {
         return <div className="col-md-2 col-sm-4 col-xs-6 col-lg-1" key={index}>
           <div className="cardWrap" onClick={() => {
             browserHistory.push(`/detail/${index}`)

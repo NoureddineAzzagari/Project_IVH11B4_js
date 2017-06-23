@@ -2,7 +2,7 @@ var path = require('path');
 
 module.exports = {
   entry: './index.js',
-  output: { path: __dirname, filename: '/build/bundle.js' }, //output path voor de bundle js
+  output: { path: __dirname, filename: 'build/bundle.js' }, //output path voor de bundle js
 
   //devserver settings
   devServer: {
